@@ -1,57 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Shared Text</title>
-  </head>
-  <body>
-    <h1>Shared Text</h1>
-    <p>Enter your text below:</p>
-    <form id="form">
-      <textarea id="text" rows="5" cols="50"></textarea>
-      <br>
-      <button type="submit">Submit</button>
-    </form>
-    <hr>
-    <h2>Shared Text:</h2>
-    <div id="shared-text">
-      <!-- The shared text will be displayed here -->
-    </div>
-    
-    <script>
-      const form = document.querySelector('#form');
-      const textInput = document.querySelector('#text');
-      const sharedText = document.querySelector('#shared-text');
+<head>
+	<title>Shared Text</title>
+</head>
+<body>
+	<h1 id="header">Shared Text</h1>
+	<p id="shared-text">Nothing shared yet</p>
+	<form onsubmit="submitText(event)">
+		<input type="text" id="input-box" name="input-box">
+		<button type="submit">Submit</button>
+	</form>
 
-      // Get the shared text from the server
-      fetch('/shared_text')
-        .then(response => response.text())
-        .then(text => {
-          sharedText.textContent = text;
-        });
-
-      // Handle form submission
-      form.addEventListener('submit', event => {
-        event.preventDefault();
-
-        // Send the text to the server
-        fetch('/shared_text', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            text: textInput.value
-          })
-        })
-          .then(response => response.text())
-          .then(text => {
-            sharedText.textContent = text;
-          });
-
-        // Clear the input field
-        textInput.value = '';
-      });
-    </script>
-  </body>
+	<script>
+		function submitText(event) {
+			event.preventDefault();
+			const inputBox = document.getElementById("input-box");
+			const sharedText = document.getElementById("shared-text");
+			const header = document.getElementById("header");
+			sharedText.innerText = inputBox.value;
+			header.innerText = "Shared Text";
+			inputBox.value = "";
+		}
+	</script>
+</body>
 </html>
-
