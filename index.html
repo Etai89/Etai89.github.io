@@ -1,25 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Shared Text 1</title>
+	<title>Manicure Business</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<h1 id="shared-text-header">Shared Text</h1>
-	<p id="shared-text"><?php echo htmlspecialchars(file_get_contents('shared_text.txt')); ?></p>
-	<form method="post">
-		<textarea name="text"></textarea>
-		<br>
-		<input type="submit" value="Submit">
-	</form>
-	<?php
-	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-		// Save the shared text to the file
-		file_put_contents('shared_text.txt', $_POST['text']);
+	<header>
+		<h1>Manicure Business</h1>
+		<nav>
+			<ul>
+				<li><a href="#about">About Us</a></li>
+				<li><a href="#services">Services</a></li>
+				<li><a href="#gallery">Gallery</a></li>
+				<li><a href="#contact">Contact Us</a></li>
+			</ul>
+		</nav>
+	</header>
 
-		// Redirect to the same page to prevent accidental resubmissions
-		header('Location: ' . $_SERVER['REQUEST_URI']);
-		exit;
-	}
-	?>
+	<main>
+		<section id="about">
+			<h2>About Us</h2>
+			<p>We are a professional manicure business dedicated to providing high-quality services to our clients. Our experienced staff uses the latest techniques and equipment to give you the perfect manicure every time.</p>
+			<p>Our salon is a warm and welcoming environment where you can relax and enjoy some pampering. We offer a variety of manicure services, including:</p>
+			<ul>
+				<li>Regular Manicure</li>
+				<li>French Manicure</li>
+				<li>Gel Manicure</li>
+				<li>Nail Art</li>
+			</ul>
+		</section>
+
+		<section id="services">
+			<h2>Services</h2>
+			<p>At Manicure Business, we offer a range of services to meet your needs. Our manicure services include:</p>
+			<ul>
+				<li>Regular Manicure</li>
+				<li>French Manicure</li>
+				<li>Gel Manicure</li>
+				<li>Nail Art</li>
+			</ul>
+			<p>In addition to our manicure services, we also offer pedicures, waxing, and other beauty treatments.</p>
+		</section>
+
+		<section id="gallery">
+			<h2>Gallery</h2>
+			<div class="gallery">
+				<img src="img1.jpg" alt="Manicure 1">
+				<img src="img2.jpg" alt="Manicure 2">
+				<img src="img3.jpg" alt="Manicure 3">
+				<img src="img4.jpg" alt="Manicure 4">
+				<img src="img5.jpg" alt="Manicure 5">
+				<img src="img6.jpg" alt="Manicure 6">
+			</div>
+		</section>
+
+		<section id="contact">
+			<h2>Contact Us</h2>
+			<p>Thank you for considering Manicure Business for your beauty needs. If you have any questions or would like to schedule an appointment, please contact us at:</p>
+			<ul>
+				<li>Phone: 123-456-7890</li>
+				<li>Email: info@manicurebusiness.com</li>
+				<li>Address: 123 Main Street, Anytown, USA</li>
+			</ul>
+			<p>We look forward to seeing you soon and providing you with the best possible manicure experience. Thank you for choosing Manicure Business!</p>
+		</section>
+	</main>
+	<footer>
+	<p>Manicure Business &copy; 2023</p>
+</footer>
 </body>
 </html>
