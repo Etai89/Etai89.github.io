@@ -4,23 +4,22 @@
 	<title>Shared Text</title>
 </head>
 <body>
-	<h1 id="header">Shared Text</h1>
-	<p id="shared-text">Nothing shared yet</p>
-	<form onsubmit="submitText(event)">
-		<input type="text" id="input-box" name="input-box">
-		<button type="submit">Submit</button>
+	<h1 id="shared-text-header">Shared Text</h1>
+	<p id="shared-text"><?php echo htmlspecialchars(file_get_contents('shared_text.txt')); ?></p>
+	<form method="post">
+		<textarea name="text"></textarea>
+		<br>
+		<input type="submit" value="Submit">
 	</form>
+	<?php
+	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+		// Save the shared text to the file
+		file_put_contents('shared_text.txt', $_POST['text']);
 
-	<script>
-		function submitText(event) {
-			event.preventDefault();
-			const inputBox = document.getElementById("input-box");
-			const sharedText = document.getElementById("shared-text");
-			const header = document.getElementById("header");
-			sharedText.innerText = inputBox.value;
-			header.innerText = "Shared Text";
-			inputBox.value = "";
-		}
-	</script>
+		// Redirect to the same page to prevent accidental resubmissions
+		header('Location: ' . $_SERVER['REQUEST_URI']);
+		exit;
+	}
+	?>
 </body>
 </html>
